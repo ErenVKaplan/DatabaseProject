@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+@model LoginViewModel 
+<form asp-controller="Login" asp-action="Login" method="post">
+    <label asp-for="Email"></label>
+    <input asp-for="Email"/>
+    <span class="text-danger" asp-validation-for="Email"></span>
+
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" />
+    <span class="text-danger" asp-validation-for="Password"></span>
+
+    <button asp-action="Login" asp-controller="Login" type="submit">Login</button>
+</form>

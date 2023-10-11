@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+@model RegisterViewModel 
+
+<form asp-action="Register" asp-controller="Login" method="post">
+    <label class="form-label" asp-for="Name">Adınızı Giriniz:</label>
+    <input class="form-control" placeholder="Adınız" asp-for="Name" required/>
+    <span class="text-danger small" asp-validation-for="Name"></span>
+
+    <label class="form-label" asp-for="Surname">Soyadınızı Giriniz:</label>
+    <input class="form-control" placeholder="Soyadınız" asp-for="Surname" required />
+    <span class="text-danger small" asp-validation-for="Surname"></span>
+
+    <label class="form-label" asp-for="Email">E-Mailinizi Giriniz:</label>
+    <input  type="email" class="form-control" placeholder="E-Mailiniz" asp-for="Email" required />
+    <span class="text-danger small" asp-validation-for="Email"></span>
+
+
+    <label class="form-label" asp-for="Password">Şifreniz:</label>
+    <input  type="password" class="form-control" placeholder="Şifreniz" asp-for="Password" required />
+    <span class="text-danger small" asp-validation-for="Password"></span>
+
+    <label class="form-label" asp-for="RePassword"> Yeniden Şifreniz:</label>
+    <input type="password" class="form-control" placeholder="Şifreniz" asp-for="RePassword" required />
+    <span class="text-danger small" asp-validation-for="RePassword"></span>
+
+
+    <label class="form-label" asp-for="TC">TC Kimlik No:</label>
+    <input class="form-control" placeholder="Soyadınız" asp-for="TC" minlength="11" maxlength="11" required />
+    <span class="text-danger small" asp-validation-for="TC"></span>
+
+    <label class="form-label" asp-for="CellPhone">Telefon Numaranız:</label>
+    <input class="form-control" placeholder="Telefon Numaranız" asp-for="CellPhone" required />
+    <span class="text-danger small" asp-validation-for="CellPhone"></span>
+    
+    <label class="form-label" asp-for="BornDate">Doğum Tarihi</label>
+    <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate" required />
+    <span class="text-danger small" asp-validation-for="BornDate"></span>
+
+
+    <label class="form-label" asp-for="Adrress">Adresiniz:</label>
+    <textarea class="form-control" placeholder="Adresiniz:" asp-for="Adrress" required></textarea>
+    <span class="text-danger small" asp-validation-for="Adrress"></span>
+
+    <button class="btn btn-primary" type="submit">Kayıt Ol</button>
+</form>
