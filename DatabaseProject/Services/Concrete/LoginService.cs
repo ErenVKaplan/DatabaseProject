@@ -54,7 +54,7 @@ namespace DatabaseProject.Services.Concrete
                 Surname = model.Surname,
                 Email = model.Email.Trim(),
                 Password = model.Password,
-                Role = "user",
+                Role = "User",
                 Adrress = model.Adrress,
                 CellPhone = model.CellPhone.Trim(),
                 TC = model.TC.Trim(),

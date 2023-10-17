@@ -1,0 +1,165 @@
+﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Dashboard","UserDashboard")">
+        <div class="sidebar-brand-text">@ViewData["SiteName"]</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Panel
+    </div>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="@Url.Action("Dashboard","UserDashboard")">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Anasayfa</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Store -->
+    <li class="nav-item ">
+        <a class="nav-link" href="@Url.Action("PurchasePacket","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Paket Satın Al</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Store -->
+    <li class="nav-item ">
+        <a class="nav-link" href="@Url.Action("UpgradePacket","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Paket Yükselt</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Siparişler Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSiparis"
+           aria-expanded="true" aria-controls="collapseSiparis">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Siparişler</span>
+        </a>
+        <div id="collapseSiparis" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Sipariş İşlemleri:</h6>
+                <a class="collapse-item" href="@Url.Action("Orders","UserDashboard", new { orderType = "All" })">Siparişlerim</a>
+                <a class="collapse-item" href="@Url.Action("DealerOrders","UserDashboard")">Bayi Siparişleri</a>
+            </div>
+        </div>
+
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Bayilerim
+    </div>
+
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("Register","Login", new { @*kullaniciId = kullaniciId*@ })">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Bayi Ekle</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("References","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Bayilerim</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("Dealers","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Tüm Bayilerim</span>
+        </a>
+    </li>
+    <!-- Nav Item - Paketler Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrganizasyon"
+           aria-expanded="true" aria-controls="collapseOrganizasyon">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Organizasyon</span>
+        </a>
+        <div id="collapseOrganizasyon" class="collapse" aria-labelledby="headingOrganizasyon"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Organizasyon</h6>
+                <a class="collapse-item" href="@Url.Action("DealerTree","UserDashboard")">Bayi Ağacım</a>
+                <a class="collapse-item" href="@Url.Action("TeamTree","UserDashboard")">Takım Ağacım</a>
+                <a class="collapse-item" href="#">Bayi Kariyerleri</a>
+                <a class="collapse-item" href="@Url.Action("DealerPaymentRequests","UserDashboard")">Bayi Cüzdan Onay</a>
+                <a class="collapse-item" href="@Url.Action("SponsorPaymentRequests","UserDashboard")">Sponsor Cüzdan Ödeme</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("DealersToPlacement","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Yerleştirme Bekleyen Bayiler</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("UserBonus","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Kazandığım Primler</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("CekimTaleplerim","UserDashboard")">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Çekim Taleplerim</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Profil
+    </div>
+
+    <!-- Nav Item - Kullanıcılar Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Profil İşlemleri</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Profil İşlemleri:</h6>
+                <a class="collapse-item" href="@Url.Action("Profile","Profile")">Profil</a>
+                <a class="collapse-item" href="@Url.Action("Bank","Profile")">Banka Bilgileri</a>
+                <a class="collapse-item" href="@Url.Action("Address","Profile")">Adres Bilgileri</a>
+                <a class="collapse-item" href="@Url.Action("ChangePassword","Profile")">Şifre Değiştir</a>
+            </div>
+        </div>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+   
+</ul>

@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\**" />
+    <Compile Remove="Views\Shared\Components\**" />
+    <Compile Remove="Views\Shared\ViewComponents\**" />
+    <Content Remove="ViewModels\**" />
+    <Content Remove="Views\Shared\Components\**" />
+    <Content Remove="Views\Shared\ViewComponents\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\**" />
+    <EmbeddedResource Remove="Views\Shared\ViewComponents\**" />
+    <None Remove="ViewModels\**" />
+    <None Remove="Views\Shared\Components\**" />
+    <None Remove="Views\Shared\ViewComponents\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
@@ -19,13 +34,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Shared\Components\" />
-    <Folder Include="Views\Shared\ViewComponents\" />
   </ItemGroup>
 
 </Project>
