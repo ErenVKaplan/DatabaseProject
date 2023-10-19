@@ -39,4 +39,11 @@
     <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate"  />
     <span class="text-danger" asp-validation-for="BornDate"></span>
 
+    <button type="submit" >Güncelle</button>
+</form>
+
+
+<form asp-action="DeleteUser" asp-controller="Profile" method="post">
+    <input asp-for="Id" type="hidden" />
+    <button type="submit">Kullanıcıyı Sil</button>
 </form>
