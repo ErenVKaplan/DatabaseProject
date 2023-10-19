@@ -1,0 +1,42 @@
+﻿@{
+   Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+@model ProfileUpdateViewModel
+
+<form asp-action="Profile" asp-controller="Profile" method="post">
+    <label asp-for="Id">Kullanıcı ID</label>
+    <input placeholder="Kullanıcı ID" asp-for="Id" readonly/>
+    <span class="text-danger" asp-validation-for="Id"></span>
+
+    <label asp-for="Name">Adınız:</label>
+    <input placeholder="Adınız:" asp-for="Name"/>
+    <span class="text-danger" asp-validation-for="Name"></span>
+
+    <label asp-for="Surname">Soyadınız:</label>
+    <input placeholder="Soyadınız:" asp-for="Surname"  />
+    <span class="text-danger" asp-validation-for="Surname"></span>
+
+
+
+    <label asp-for="Email">Mail Adresiniz:</label>
+    <input placeholder="Mail Adresiniz:" asp-for="Email" readonly />
+    <span class="text-danger" asp-validation-for="Email"></span>
+
+    <label asp-for="CellPhone">Cep Telefonu No:</label>
+    <input placeholder="Cep Telefonu No:" asp-for="CellPhone" />
+    <span class="text-danger" asp-validation-for="CellPhone"></span>
+    
+    
+    
+    <label asp-for="TC">Kimlik No:</label>
+    <input placeholder="Kimlik No:" asp-for="TC" />
+    <span class="text-danger" asp-validation-for="TC"></span>
+
+
+
+
+    <label class="form-label" asp-for="BornDate">Doğum Yılı</label>
+    <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate"  />
+    <span class="text-danger" asp-validation-for="BornDate"></span>
+
+</form>
