@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+@model List<Bank>
+<div class="container-fluid table table table-striped">
+    <div class="row justify-content-between mb-5">
+        
+        <a class="btn btn-success btn-s col-2" href="/Profile/BankCreate">Banka Hesabı Ekle</a>
+    </div>
+
+    <div class="table-responsive">
+        @if (Model != null && Model.Count != 0)
+        {
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Hesap ID</th>
+                        <th>Bank Adı</th>
+                        <th>Kart Numarası</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <input asp-for="@item.UserId" hidden />
+                        <tr>
+                            <td>@item.BankId</td>
+                            <td>@item.BankName</td>
+                            <td>@item.CardNo</td>
+                            <td>
+                                <a class="btn btn-success btn-sm" asp-controller="Profile" asp-action="BankUpdate" asp-route-id="@item.BankId">
+                                    Güncelle
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" asp-controller="Profile" asp-action="BankRemove" asp-route-id="@item.BankId" onclick="return confirm('Kategori silmek istiyor musunuz?')">
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Hesap bilgisi bulunamadı. Yeni bir hesap eklemek için yukarıdaki "Banka Hesabı Ekle" düğmesine tıklayın.
+            </div>
+        }
+    </div>
+</div>

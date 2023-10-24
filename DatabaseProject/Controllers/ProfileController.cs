@@ -15,10 +15,12 @@ namespace DatabaseProject.Controllers
     {
         private readonly KullaniciService _kullaniciService;
         private readonly IMapper _mapper;
-        public ProfileController(KullaniciService kullaniciService, IMapper mapper)
+        private readonly BankService _bankService;
+        public ProfileController(KullaniciService kullaniciService, IMapper mapper, BankService bankService)
         {
             _kullaniciService = kullaniciService;
             _mapper = mapper;
+            _bankService = bankService;
         }
 
 
@@ -62,6 +64,17 @@ namespace DatabaseProject.Controllers
             _kullaniciService.DeleteUserById(id);
              HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Login");
+        }
+
+
+
+        [HttpGet]
+        public IActionResult Bank()
+        {
+            ViewData["PageTitle"] = "Banka Kartlarım";
+            int userId=int.Parse(User.FindFirstValue("KullaniciId"));
+            var list = _bankService.GetBanksByUserId(userId).Data;
+            return View(list);
         }
     }
 }

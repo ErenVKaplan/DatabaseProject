@@ -10,5 +10,15 @@ namespace DatabaseProject.Entities
         }
         //public DbSet<Example> Examples { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Bank> Banks { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+           modelBuilder.Entity<Bank>()
+                .HasOne(b=>b.User)
+                .WithMany(u=>u.Banks)
+                .HasForeignKey(b=>b.UserId);
+        }
     }
 }

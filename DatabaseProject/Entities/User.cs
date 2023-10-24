@@ -12,5 +12,7 @@
         public string TC { get; set; }
         public string Adrress { get; set; }
         public DateTime BornDate { get; set; }
+
+        public ICollection<Bank> Banks { get; set; }
     }
 }

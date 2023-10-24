@@ -23,6 +23,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddSingleton<IHelper, Helper>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<KullaniciService>();
+builder.Services.AddScoped<BankService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();

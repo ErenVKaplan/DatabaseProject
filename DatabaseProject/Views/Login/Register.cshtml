@@ -1,47 +1,116 @@
 ﻿@{
     Layout = null;
 }
-@model RegisterViewModel 
+@model RegisterViewModel
 
-<form asp-action="Register" asp-controller="Login" method="post">
-    <label class="form-label" asp-for="Name">Adınızı Giriniz:</label>
-    <input class="form-control" placeholder="Adınız" asp-for="Name" required/>
-    <span class="text-danger small" asp-validation-for="Name"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <link href="~/css/login.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+~your-integrity-code-here~" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-7 intro-section">
+                <div class="brand-wrapper">
+                    <h1>HepsiOrada</h1>
+                </div>
+                <div class "intro-content-wrapper">
+                    <h3 class="intro-title">Alışveriş Yapmak İçin Doğru Yerdesiniz!!</h3>
+                    <p class="intro-text">
+                        Hoşgeldiniz!
+                    </p>
+                    
+                </div>
+               
+            </div>
+            <div class="col-sm-6 col-md-5 form-section">
+                <div class="login-wrapper">
+                    <h2 class="login-title">Kayıt Ol</h2>
+                    <form asp-action="Register" asp-controller="Login" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="form-label">Adınızı Giriniz:</label>
+                                    <input asp-for="Name" class="form-control" placeholder="Adınız" required />
+                                    <span asp-validation-for="Name" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Surname" class="form-label">Soyadınızı Giriniz:</label>
+                                    <input asp-for="Surname" class="form-control" placeholder="Soyadınız" required />
+                                    <span asp-validation-for="Surname" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
 
-    <label class="form-label" asp-for="Surname">Soyadınızı Giriniz:</label>
-    <input class="form-control" placeholder="Soyadınız" asp-for="Surname" required />
-    <span class="text-danger small" asp-validation-for="Surname"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="form-label">E-Mailinizi Giriniz:</label>
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="E-Mailiniz" required />
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Password" class="form-label">Şifreniz:</label>
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="Şifreniz" required />
+                                    <span asp-validation-for="Password" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
 
-    <label class="form-label" asp-for="Email">E-Mailinizi Giriniz:</label>
-    <input  type="email" class="form-control" placeholder="E-Mailiniz" asp-for="Email" required />
-    <span class="text-danger small" asp-validation-for="Email"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="RePassword" class="form-label">Yeniden Şifreniz:</label>
+                                    <input asp-for="RePassword" type="password" class="form-control" placeholder="Şifreniz" required />
+                                    <span asp-validation-for="RePassword" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="TC" class="form-label">TC Kimlik No:</label>
+                                    <input asp-for="TC" class="form-control" placeholder="Soyadınız" minlength="11" maxlength="11" required />
+                                    <span asp-validation-for="TC" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="CellPhone" class="form-label">Telefon Numaranız:</label>
+                                    <input asp-for="CellPhone" class="form-control" placeholder="Telefon Numaranız" required />
+                                    <span asp-validation-for="CellPhone" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="BornDate" class="form-label">Doğum Tarihi</label>
+                                    <input asp-for="BornDate" type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" required />
+                                    <span asp-validation-for="BornDate" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
 
-    <label class="form-label" asp-for="Password">Şifreniz:</label>
-    <input  type="password" class="form-control" placeholder="Şifreniz" asp-for="Password" required />
-    <span class="text-danger small" asp-validation-for="Password"></span>
+                        <div class="form-group">
+                            <label asp-for="Adrress" class="form-label">Adresiniz:</label>
+                            <textarea asp-for="Adrress" class="form-control" placeholder="Adresiniz:" required></textarea>
+                            <span asp-validation-for="Adrress" class="text-danger small"></span>
+                        </div>
 
-    <label class="form-label" asp-for="RePassword"> Yeniden Şifreniz:</label>
-    <input type="password" class="form-control" placeholder="Şifreniz" asp-for="RePassword" required />
-    <span class="text-danger small" asp-validation-for="RePassword"></span>
-
-
-    <label class="form-label" asp-for="TC">TC Kimlik No:</label>
-    <input class="form-control" placeholder="Soyadınız" asp-for="TC" minlength="11" maxlength="11" required />
-    <span class="text-danger small" asp-validation-for="TC"></span>
-
-    <label class="form-label" asp-for="CellPhone">Telefon Numaranız:</label>
-    <input class="form-control" placeholder="Telefon Numaranız" asp-for="CellPhone" required />
-    <span class="text-danger small" asp-validation-for="CellPhone"></span>
-    
-    <label class="form-label" asp-for="BornDate">Doğum Tarihi</label>
-    <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate" required />
-    <span class="text-danger small" asp-validation-for="BornDate"></span>
-
-
-    <label class="form-label" asp-for="Adrress">Adresiniz:</label>
-    <textarea class="form-control" placeholder="Adresiniz:" asp-for="Adrress" required></textarea>
-    <span class="text-danger small" asp-validation-for="Adrress"></span>
-
-    <button class="btn btn-primary" type="submit">Kayıt Ol</button>
-</form>
+                        <button class="btn btn-primary" type="submit">Kayıt Ol</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
