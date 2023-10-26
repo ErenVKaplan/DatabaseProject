@@ -13,6 +13,19 @@
           rel="stylesheet">
     <link href="~/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet" />
+    <style>
+        .alert-fixed {
+            position: fixed;
+            top: 1.5%;
+            left: 30%;
+            width: 40%;
+            z-index: 9999;
+        }
+
+            .alert-fixed ul {
+                list-style: none;
+            }
+    </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body id="page-top">

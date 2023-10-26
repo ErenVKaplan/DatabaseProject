@@ -1,0 +1,36 @@
+﻿@{
+  Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+@model BankCreateViewModel
+@section Styles{
+    <link href="~/css/bankcreate.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12">
+            <div class="card mx-auto">
+                <p class="heading">Kart Ekleme</p>
+                <form class="card-details" asp-controller="Profile" asp-action="BankCreate" method="post">
+                    <input asp-for="UserId" hidden />
+                    <div class="form-group mb-0">
+                        <label class="text-warning mb-0" asp-for="CardNo">Kart Numaranız</label>
+                        <input class="form-control" asp-for="CardNo" placeholder="1234 5678 9012 3457" size="17" id="cno" minlength="19" maxlength="19">
+                        <span class="text-danger" asp-validation-for="CardNo"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-warning mb-0" asp-for="BankName">Banka Adı</label>
+                        <input class="form-control" asp-for="BankName" placeholder="Ziraat" size="17">
+                        <span class="text-danger" asp-validation-for="BankName"></span>
+                    </div>
+                    <div class="form-group pt-2">
+                        <div class="row d-flex">
+                            <div class="col-sm-5 pt-0">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right px-3 py-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

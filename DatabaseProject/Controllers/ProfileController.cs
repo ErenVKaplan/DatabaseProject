@@ -23,7 +23,7 @@ namespace DatabaseProject.Controllers
             _bankService = bankService;
         }
 
-
+        #region Profile
         [HttpGet]
         public IActionResult Profile() 
         {
@@ -36,6 +36,8 @@ namespace DatabaseProject.Controllers
             }
             return RedirectToAction("Dashboard", "UserDashboard");
         }
+
+
         [HttpPost]
         public IActionResult Profile(ProfileUpdateViewModel model) 
         {
@@ -66,8 +68,9 @@ namespace DatabaseProject.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        #endregion
 
-
+        #region Bank
         [HttpGet]
         public IActionResult Bank()
         {
@@ -76,5 +79,108 @@ namespace DatabaseProject.Controllers
             var list = _bankService.GetBanksByUserId(userId).Data;
             return View(list);
         }
+
+        [HttpGet]
+        public IActionResult BankCreate()
+        {
+            ViewData["PageTitle"] = "Yeni Kart Ekle";
+
+            int kullaniciId = int.Parse(User.FindFirstValue("KullaniciId"));
+            BankCreateViewModel model = new BankCreateViewModel();
+            model.UserId = kullaniciId;
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult BankCreate(BankCreateViewModel model)
+        {
+            if (!ModelState.IsValid) 
+            {
+                ModelState.AddModelError(string.Empty, "Form alanlarını eksiksiz doldurunuz.");
+                return View(model);
+            }
+            ServiceResponse<bool> response = _bankService.CreateBank(_mapper.Map<Bank>(model));
+            
+            if (!response.IsError)
+            {
+                //TempData["SuccessMessage"] = "Ödeme bilgisi başarıyla eklendi.";
+                return RedirectToAction("Bank", "Profile");
+            }
+
+            foreach (string message in response.Errors)
+                ModelState.AddModelError(string.Empty, message);
+
+            return View(model);
+        }
+        
+        
+        [Route("[controller]/[action]/{id}")]
+        [HttpGet]    
+        public IActionResult BankUpdate(int id) 
+        {
+            ViewData["PageTitle"] = "Kart Bilgisi Güncelle";
+
+            int kullaniciId = int.Parse(User.FindFirstValue("KullaniciId"));
+
+            ServiceResponse<Bank> response = _bankService.GetBankById(kullaniciId, id);
+            if (!response.IsError)
+            {
+                BankUpdateViewModel model = new BankUpdateViewModel();
+                return View(_mapper.Map<BankUpdateViewModel>(response.Data));
+            }
+
+            foreach (string message in response.Errors)
+                ModelState.AddModelError(string.Empty, message);
+
+            return RedirectToAction("Bank");
+        }
+
+        [HttpPost]  
+        public IActionResult BankUpdate(BankUpdateViewModel model)
+        {
+            
+
+            ViewData["PageTitle"] = "Kart Bilgisi Güncelle";
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Form alanlarını eksiksiz doldurunuz.");
+                return View(model);
+            }
+
+            ServiceResponse<bool> response = _bankService.UpdateBank(_mapper.Map<Bank>(model));
+
+            // Update işlemi başarılı ise.
+            if (!response.IsError)
+            {
+                TempData["SuccessMessage"] = "Banka bilgileri başarıyla güncellendi.";
+                return RedirectToAction("Bank", "Profile");
+            }
+
+            foreach (string message in response.Errors)
+                ModelState.AddModelError(string.Empty, message);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult BankRemove(int BankId) 
+        {
+           
+            ServiceResponse<bool> response = _bankService.DeleteBankById(BankId);
+            if (!response.IsError)
+            {
+                TempData["SuccessMessage"] = "Kart bilgileri başarıyla silindi.";
+                return RedirectToAction("Bank", "Profile");
+            }
+            foreach (string message in response.Errors)
+                ModelState.AddModelError(string.Empty, message);
+
+            return RedirectToAction("Bank");
+        }
+
+
+
+        #endregion
     }
 }

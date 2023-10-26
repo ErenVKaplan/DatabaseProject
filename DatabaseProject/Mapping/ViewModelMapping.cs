@@ -15,7 +15,12 @@ namespace DatabaseProject.Mapping
             
             CreateMap<User,LoginViewModel>().ReverseMap();
             CreateMap<User,RegisterViewModel>().ReverseMap();
-            CreateMap<User,ProfileUpdateViewModel>().ReverseMap();  
+            CreateMap<User,ProfileUpdateViewModel>().ReverseMap();
+
+
+
+            CreateMap<Bank, BankCreateViewModel>().ReverseMap();
+            CreateMap<Bank, BankUpdateViewModel>().ReverseMap();
         }
     }
 }
