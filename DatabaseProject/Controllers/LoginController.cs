@@ -127,6 +127,13 @@ namespace DatabaseProject.Controllers
             return View(model);
         }
         #endregion
+
+
+        [HttpGet]
+        public IActionResult LandingPage()
+        {
+            return View();
+        }
     }
 
 }

@@ -41,4 +41,17 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Landing\js\main.js" />
+    <None Include="wwwroot\Landing\lib\easing\easing.js" />
+    <None Include="wwwroot\Landing\lib\easing\easing.min.js" />
+    <None Include="wwwroot\Landing\lib\owlcarousel\LICENSE" />
+    <None Include="wwwroot\Landing\lib\owlcarousel\owl.carousel.js" />
+    <None Include="wwwroot\Landing\lib\owlcarousel\owl.carousel.min.js" />
+    <None Include="wwwroot\Landing\lib\waypoints\links.php" />
+    <None Include="wwwroot\Landing\lib\waypoints\waypoints.min.js" />
+    <None Include="wwwroot\Landing\lib\wow\wow.js" />
+    <None Include="wwwroot\Landing\lib\wow\wow.min.js" />
+  </ItemGroup>
+
 </Project>

@@ -46,6 +46,6 @@ app.UseAuthorization();
 app.UseCookiePolicy();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Register}/{id?}");
+    pattern: "{controller=Login}/{action=LandingPage}/{id?}");
 
 app.Run();
