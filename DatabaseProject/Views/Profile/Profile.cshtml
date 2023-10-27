@@ -1,19 +1,15 @@
 ﻿@{
    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
 }
-
+@model ProfileUpdateViewModel
 <div class="container my-4 col-4 border rounded-3">
     <h2>Profil</h2>
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card-body">
-    @model ProfileUpdateViewModel
+   
 
     <form class="row g-3" asp-action="Profile" asp-controller="Profile" method="post">
-
-    
-        
-
                 <div class="col-12">
                         @*<label asp-for="Id"><b>Kullanıcı ID</b></label>*@
                     <input placeholder="Kullanıcı ID" asp-for="Id" hidden class="form-control"/>

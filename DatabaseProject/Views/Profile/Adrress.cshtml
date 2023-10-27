@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+@model List<Adrress>
+<div class="container-fluid table table table-striped">
+    <div class="row justify-content-between mb-5">
+
+        <a class="btn btn-success btn-s col-2" href="/Profile/AdrressCreate">Adres Ekle</a>
+    </div>
+
+    <div class="table-responsive">
+        @if (Model != null && Model.Count != 0)
+        {
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Adres ID</th>
+                        <th>Adres Adı</th>
+                        <th>Detaylı Adres</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <input asp-for="@item.UserId" hidden />
+                        <tr>
+                            <td>@item.AdrressId</td>
+                            <td>@item.AdrressName</td>
+                            <td>@item.AdrressDescription</td>
+                            <td>
+                                <a class="btn btn-success btn-sm" asp-controller="Profile" asp-action="AdrressUpdate" asp-route-id="@item.AdrressId">
+                                    Güncelle
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" asp-controller="Profile" asp-action="AdrressDelete" asp-route-id="@item.AdrressId" onclick="return confirm('Adresi silmek istediğinizden emin misiniz?')">
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Hesap bilgisi bulunamadı. Yeni bir hesap eklemek için yukarıdaki "Banka Hesabı Ekle" düğmesine tıklayın.
+            </div>
+        }
+    </div>
+</div>

@@ -21,6 +21,10 @@ namespace DatabaseProject.Mapping
 
             CreateMap<Bank, BankCreateViewModel>().ReverseMap();
             CreateMap<Bank, BankUpdateViewModel>().ReverseMap();
+
+
+            CreateMap<Adrress, AdrressCreateViewModel>().ReverseMap();
+            CreateMap<Adrress, AdrressUpdateViewModel>().ReverseMap();
         }
     }
 }

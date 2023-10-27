@@ -13,8 +13,11 @@
         public string Adrress { get; set; }
         public DateTime BornDate { get; set; }
 
+        public string Gender { get; set; }
+
+        public ICollection<Adrress> Adrresses { get; set; }
         public ICollection<Bank> Banks { get; set; }
 
-        public string Gender { get; set; }
+       
     }
 }

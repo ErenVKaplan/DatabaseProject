@@ -11,7 +11,7 @@ namespace DatabaseProject.Entities
         //public DbSet<Example> Examples { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Bank> Banks { get; set; }
-
+        public DbSet<Adrress> Adrresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,12 @@ namespace DatabaseProject.Entities
                 .HasOne(b=>b.User)
                 .WithMany(u=>u.Banks)
                 .HasForeignKey(b=>b.UserId);
+
+
+            modelBuilder.Entity<Adrress>().
+                HasOne(u => u.User)
+                .WithMany(a => a.Adrresses)
+                .HasForeignKey(u => u.UserId);
         }
     }
 }

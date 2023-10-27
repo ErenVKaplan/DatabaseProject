@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
+}
+@model AdrressUpdateViewModel
+<form asp-controller="Profile" asp-action="AdrressUpdate" method="post">
+
+    <input asp-for="AdrressId" hidden />
+
+    <label asp-for="AdrressName"></label>
+    <input asp-for="AdrressName" />
+    <span asp-validation-for="AdrressName"></span>
+
+
+    <label asp-for="AdrressDescription"></label>
+    <input asp-for="AdrressDescription" />
+    <span asp-validation-for="AdrressDescription"></span>
+
+
+    <button type="submit">Kaydet</button>
+</form>
