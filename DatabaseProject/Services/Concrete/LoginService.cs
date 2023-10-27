@@ -59,7 +59,7 @@ namespace DatabaseProject.Services.Concrete
                 CellPhone = model.CellPhone.Trim(),
                 TC = model.TC.Trim(),
                 BornDate = model.BornDate,
-
+                Gender = model.Gender,
             };
             _context.Users.Add(user);
             if(_context.SaveChanges()==0) 

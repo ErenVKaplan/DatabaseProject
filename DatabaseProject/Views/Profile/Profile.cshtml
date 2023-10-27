@@ -1,46 +1,80 @@
 ﻿@{
    Layout = "~/Views/Shared/_UserDashboardLayout.cshtml";
 }
-@model ProfileUpdateViewModel
 
-<form asp-action="Profile" asp-controller="Profile" method="post">
-    <label asp-for="Id">Kullanıcı ID</label>
-    <input placeholder="Kullanıcı ID" asp-for="Id" readonly/>
-    <span class="text-danger" asp-validation-for="Id"></span>
+<div class="container my-4 col-4 border rounded-3">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card-body">
+    @model ProfileUpdateViewModel
 
-    <label asp-for="Name">Adınız:</label>
-    <input placeholder="Adınız:" asp-for="Name"/>
-    <span class="text-danger" asp-validation-for="Name"></span>
+    <form class="row g-3" asp-action="Profile" asp-controller="Profile" method="post ">
 
-    <label asp-for="Surname">Soyadınız:</label>
-    <input placeholder="Soyadınız:" asp-for="Surname"  />
-    <span class="text-danger" asp-validation-for="Surname"></span>
-
-
-
-    <label asp-for="Email">Mail Adresiniz:</label>
-    <input placeholder="Mail Adresiniz:" asp-for="Email" readonly />
-    <span class="text-danger" asp-validation-for="Email"></span>
-
-    <label asp-for="CellPhone">Cep Telefonu No:</label>
-    <input placeholder="Cep Telefonu No:" asp-for="CellPhone" />
-    <span class="text-danger" asp-validation-for="CellPhone"></span>
     
+        
+
+                <div class="col-12">
+                        <label asp-for="Id"><b>Kullanıcı ID</b></label>
+                    <input placeholder="Kullanıcı ID" asp-for="Id" readonly class="form-control"/>
+                    <span class="text-danger" asp-validation-for="Id"></span>
+                </div>
+                
+                <div class="col-6">
+                        <label asp-for="Name"><b>Adınız:</b></label>
+                        <input placeholder="Adınız:" asp-for="Name" class="form-control"/>
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <div class="col-6">
+                        <label asp-for="Surname"><b>Soyadınız:</b></label>
+                        <input placeholder="Soyadınız:" asp-for="Surname" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Surname"></span>
+                </div >
+
+                <div class="col-12">
+                        <label class="form-label" asp-for="BornDate"><b>Doğum Yılı</b></label>
+                        <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate" />
+                        <span class="text-danger" asp-validation-for="BornDate"></span>
+                </div>
+
+                @foreach (var item in ViewBag.Gender as List<string>)
+                {
+                    <div class="form-check col-12">
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="@item">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            @item
+                        </label>
+                    </div>
+                }
+
+   
+                <div class="col-12">
+                        <label asp-for="Email"><b>Mail Adresiniz:</b></label>
+                    <input placeholder="Mail Adresiniz:" asp-for="Email" readonly class="form-control"/>
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+
+                <div class="col-12">
+                        <label asp-for="CellPhone"><b>Cep Telefonu No:</b></label>
+                    <input placeholder="Cep Telefonu No:" asp-for="CellPhone" class="form-control"/>
+                    <span class="text-danger" asp-validation-for="CellPhone"></span>
+                </div>
     
-    
-    <label asp-for="TC">Kimlik No:</label>
-    <input placeholder="Kimlik No:" asp-for="TC" />
-    <span class="text-danger" asp-validation-for="TC"></span>
+                <div class="col-12">
+                        <label asp-for="TC"><b>Kimlik No:</b></label>
+                    <input placeholder="Kimlik No:" asp-for="TC" class="form-control"/>
+                    <span class="text-danger" asp-validation-for="TC"></span>
+                </div>
 
+                <div class="col-12">
+                        <button class="btn btn-outline-warning" type="submit"><b>Güncelle</b></button>
+                </div>
+    </form>
 
-
-
-    <label class="form-label" asp-for="BornDate">Doğum Yılı</label>
-    <input type="date" min="1900-01-01" class="form-control" placeholder="GG.AA.YYYY" asp-for="BornDate"  />
-    <span class="text-danger" asp-validation-for="BornDate"></span>
-
-    <button type="submit" >Güncelle</button>
-</form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <form asp-action="DeleteUser" asp-controller="Profile" method="post">

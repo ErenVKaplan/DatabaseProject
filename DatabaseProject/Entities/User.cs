@@ -14,5 +14,7 @@
         public DateTime BornDate { get; set; }
 
         public ICollection<Bank> Banks { get; set; }
+
+        public string Gender { get; set; }
     }
 }

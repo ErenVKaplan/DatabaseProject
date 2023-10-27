@@ -27,6 +27,8 @@ namespace DatabaseProject.Controllers
         [HttpGet]
         public IActionResult Profile() 
         {
+            ViewBag.Gender = new List<string>() { "Erkek", "Kadin" };
+
             ViewData["Title"] = "Profil";
             ServiceResponse<User> response = _kullaniciService.GetKullaniciByEmail(User.FindFirstValue(ClaimTypes.NameIdentifier));
             if (!response.IsError)

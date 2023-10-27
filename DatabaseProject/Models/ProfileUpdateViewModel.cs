@@ -9,5 +9,7 @@
         public string CellPhone { get; set; }
         public string TC { get; set; }
         public DateTime BornDate { get; set; }
+
+        public string Gender { get; set; }
     }
 }

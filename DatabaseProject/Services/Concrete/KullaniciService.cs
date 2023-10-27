@@ -69,6 +69,7 @@ namespace DatabaseProject.Services.Concrete
             user1.BornDate = user.BornDate;
             user1.Surname = user.Surname;
             user1.TC=user.TC;
+            user1.Gender = user.Gender;
             _context.Users.Update(user1);
             if (_context.SaveChanges() == 0)
             {

@@ -106,6 +106,16 @@
                             <span asp-validation-for="Adrress" class="text-danger small"></span>
                         </div>
 
+                        @foreach (var item in ViewBag.Gender as List<string>)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="Gender" value="@item">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    @item
+                                </label>
+                            </div>
+                        }
+
                         <button class="btn btn-primary" type="submit">Kayıt Ol</button>
                     </form>
                 </div>

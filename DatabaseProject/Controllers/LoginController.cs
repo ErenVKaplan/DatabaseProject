@@ -99,6 +99,7 @@ namespace DatabaseProject.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Gender = new List<string>() { "Erkek", "Kadin" };
             var model = new RegisterViewModel();
             return View(model);
         }

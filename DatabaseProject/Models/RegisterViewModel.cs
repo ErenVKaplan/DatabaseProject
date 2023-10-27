@@ -11,5 +11,7 @@
         public string CellPhone { get; set; }
         public string Adrress { get; set; }
         public DateTime BornDate { get; set; }
+
+        public string Gender { get; set; }
     }
 }
