@@ -10,6 +10,7 @@
         public string TC { get; set; }
         public DateTime BornDate { get; set; }
 
+        public List<string>? Genders { get; set; }
         public string Gender { get; set; }
     }
 }

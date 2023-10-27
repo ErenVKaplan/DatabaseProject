@@ -27,15 +27,23 @@ namespace DatabaseProject.Controllers
         [HttpGet]
         public IActionResult Profile() 
         {
-            ViewBag.Gender = new List<string>() { "Erkek", "Kadin" };
+            //ViewBag.Gender = new List<string>() { "Erkek", "Kadin" };
+
+           
 
             ViewData["Title"] = "Profil";
             ServiceResponse<User> response = _kullaniciService.GetKullaniciByEmail(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            
+            
             if (!response.IsError)
             {
                 User user = response.Data;
-                return View(_mapper.Map<ProfileUpdateViewModel>(user));
+                var map = _mapper.Map<ProfileUpdateViewModel>(user);
+                map.Genders = new List<string>() { "Erkek", "Kadin" };
+                return View(map);
             }
+
+
             return RedirectToAction("Dashboard", "UserDashboard");
         }
 
@@ -46,6 +54,8 @@ namespace DatabaseProject.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["ValidateMessage"] = "Bilgilerinizi Lütfen Düzgün Giriniz.";
+                model.Genders=new List<string>() { "Erkek", "Kadin" };
+
                 return View(model);
             }
             ServiceResponse<User> response = _kullaniciService.UpdateUser(_mapper.Map<User>(model));

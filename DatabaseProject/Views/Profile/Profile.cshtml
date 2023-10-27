@@ -3,6 +3,7 @@
 }
 
 <div class="container my-4 col-4 border rounded-3">
+    <h2>Profil</h2>
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card-body">
@@ -14,8 +15,8 @@
         
 
                 <div class="col-12">
-                        <label asp-for="Id"><b>Kullanıcı ID</b></label>
-                    <input placeholder="Kullanıcı ID" asp-for="Id" readonly class="form-control"/>
+                        @*<label asp-for="Id"><b>Kullanıcı ID</b></label>*@
+                    <input placeholder="Kullanıcı ID" asp-for="Id" hidden class="form-control"/>
                     <span class="text-danger" asp-validation-for="Id"></span>
                 </div>
                 
@@ -37,7 +38,7 @@
                         <span class="text-danger" asp-validation-for="BornDate"></span>
                 </div>
 
-                @foreach (var item in ViewBag.Gender as List<string>)
+                @foreach (var item in Model.Genders as List<string>)
                 {
                     <div class="form-check col-12">
                         <input class="form-check-input" type="radio" asp-for="Gender" value="@item">
@@ -79,5 +80,5 @@
 
 <form asp-action="DeleteUser" asp-controller="Profile" method="post">
     <input asp-for="Id" type="hidden" />
-    <button type="submit">Kullanıcıyı Sil</button>
+    <button  class="btn btn-danger" type="submit">Kullanıcıyı Sil</button>
 </form>
