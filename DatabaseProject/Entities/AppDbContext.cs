@@ -13,18 +13,36 @@ namespace DatabaseProject.Entities
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Adrress> Adrresses { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<Bank>()
+            modelBuilder.Entity<Order>()
+               .HasOne(u => u.User)
+               .WithMany(a => a.Orders)
+               .HasForeignKey(u => u.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
+           
+            modelBuilder.Entity<Order>().
+              HasOne(u => u.Adrress)
+              .WithMany(a => a.Orders)
+              .HasForeignKey(u => u.AdrresId);
+
+            modelBuilder.Entity<Bank>()
                 .HasOne(b=>b.User)
                 .WithMany(u=>u.Banks)
-                .HasForeignKey(b=>b.UserId);
+                .HasForeignKey(b=>b.UserId).OnDelete(DeleteBehavior.NoAction);
 
 
             modelBuilder.Entity<Adrress>().
                 HasOne(u => u.User)
                 .WithMany(a => a.Adrresses)
-                .HasForeignKey(u => u.UserId);
+                .HasForeignKey(u => u.UserId).OnDelete(DeleteBehavior.NoAction);
+           
+           
+
+
+            
         }
     }
 }

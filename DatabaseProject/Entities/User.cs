@@ -14,10 +14,10 @@
         public DateTime BornDate { get; set; }
 
         public string Gender { get; set; }
-
+        public int TotalUserScore { get; set; }
         public ICollection<Adrress> Adrresses { get; set; }
         public ICollection<Bank> Banks { get; set; }
 
-       
+        public ICollection<Order>? Orders { get; set; }
     }
 }

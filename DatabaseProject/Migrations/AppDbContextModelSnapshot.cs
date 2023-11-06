@@ -74,6 +74,42 @@ namespace DatabaseProject.Migrations
                     b.ToTable("Banks");
                 });
 
+            modelBuilder.Entity("DatabaseProject.Entities.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<int>("AdrresId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("OrderFee")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("AdrresId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("DatabaseProject.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -121,6 +157,9 @@ namespace DatabaseProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TotalUserScore")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -131,7 +170,7 @@ namespace DatabaseProject.Migrations
                     b.HasOne("DatabaseProject.Entities.User", "User")
                         .WithMany("Adrresses")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -142,10 +181,34 @@ namespace DatabaseProject.Migrations
                     b.HasOne("DatabaseProject.Entities.User", "User")
                         .WithMany("Banks")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DatabaseProject.Entities.Order", b =>
+                {
+                    b.HasOne("DatabaseProject.Entities.Adrress", "Adrress")
+                        .WithMany("Orders")
+                        .HasForeignKey("AdrresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseProject.Entities.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Adrress");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DatabaseProject.Entities.Adrress", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("DatabaseProject.Entities.User", b =>
@@ -153,6 +216,8 @@ namespace DatabaseProject.Migrations
                     b.Navigation("Adrresses");
 
                     b.Navigation("Banks");
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

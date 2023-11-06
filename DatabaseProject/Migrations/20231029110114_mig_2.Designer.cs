@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231027004328_addGenderForUser")]
-    partial class addGenderForUser
+    [Migration("20231029110114_mig_2")]
+    partial class mig_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,32 @@ namespace DatabaseProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("DatabaseProject.Entities.Adrress", b =>
+                {
+                    b.Property<int>("AdrressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdrressId"));
+
+                    b.Property<string>("AdrressDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdrressName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdrressId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Adrresses");
+                });
 
             modelBuilder.Entity("DatabaseProject.Entities.Bank", b =>
                 {
@@ -49,6 +75,42 @@ namespace DatabaseProject.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Banks");
+                });
+
+            modelBuilder.Entity("DatabaseProject.Entities.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<int>("AdrresId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("OrderFee")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("AdrresId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DatabaseProject.Entities.User", b =>
@@ -98,9 +160,23 @@ namespace DatabaseProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TotalUserScore")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DatabaseProject.Entities.Adrress", b =>
+                {
+                    b.HasOne("DatabaseProject.Entities.User", "User")
+                        .WithMany("Adrresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseProject.Entities.Bank", b =>
@@ -108,15 +184,43 @@ namespace DatabaseProject.Migrations
                     b.HasOne("DatabaseProject.Entities.User", "User")
                         .WithMany("Banks")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DatabaseProject.Entities.Order", b =>
+                {
+                    b.HasOne("DatabaseProject.Entities.Adrress", "Adrress")
+                        .WithMany("Orders")
+                        .HasForeignKey("AdrresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DatabaseProject.Entities.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Adrress");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DatabaseProject.Entities.Adrress", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("DatabaseProject.Entities.User", b =>
                 {
+                    b.Navigation("Adrresses");
+
                     b.Navigation("Banks");
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
